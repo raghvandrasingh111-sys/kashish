@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, Send, Heart } from 'lucide-react'
 
+const FORMSPREE_ID = 'xnjryjjl'
+
 const placeOptions = [
   { value: '', label: 'Select a vibe…' },
   { value: 'coffee', label: 'Coffee Date ☕' },
@@ -29,15 +31,33 @@ export default function ConfessionModal({ isOpen, onClose, onSuccess }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    try {
-      await fetch('https://confront-backend.vercel.app/api/confession', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      })
-    } catch {
-      // Show success even if API fails
+
+    const formId = import.meta.env.VITE_FORMSPREE_ID || FORMSPREE_ID
+    if (!formId) {
+      console.warn('VITE_FORMSPREE_ID is not set — form answers will not be delivered.')
+    } else {
+      try {
+        await fetch(`https://formspree.io/f/${formId}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+          body: JSON.stringify({
+            name: form.name,
+            contact: form.contact,
+            place: form.place,
+            date: form.date,
+            thoughts: form.thoughts,
+            memory: form.memory,
+            _subject: `💜 Kashish replied on heyy-kashish.vercel.app`,
+          }),
+        })
+      } catch {
+        // Still show success — she shouldn't see an error
+      }
     }
+
     setSubmitted(true)
     onSuccess?.()
   }
