@@ -1,8 +1,12 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import { useMusic } from '../context/MusicContext'
 
 export default function LoadingSplash({ onComplete }) {
   const [phase, setPhase] = useState(0)
+  const [canEnter, setCanEnter] = useState(false)
+  const { unmute } = useMusic()
+
   const lines = [
     'Some people accidentally become someone\'s favorite person.',
     'For me, that person is Kashish.',
@@ -10,18 +14,26 @@ export default function LoadingSplash({ onComplete }) {
 
   useEffect(() => {
     const t1 = setTimeout(() => setPhase(1), 2500)
-    const t2 = setTimeout(onComplete, 5500)
+    const t2 = setTimeout(() => setCanEnter(true), 4000)
     return () => {
       clearTimeout(t1)
       clearTimeout(t2)
     }
-  }, [onComplete])
+  }, [])
+
+  const handleEnter = async () => {
+    if (!canEnter) return
+    await unmute()
+    onComplete()
+  }
 
   return (
     <motion.div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-[#0b0b0f]"
+      className="fixed inset-0 z-[100] flex cursor-pointer items-center justify-center bg-[#0b0b0f]"
       exit={{ opacity: 0, filter: 'blur(10px)' }}
       transition={{ duration: 1.5, ease: 'easeInOut' }}
+      onClick={handleEnter}
+      onTouchStart={handleEnter}
     >
       <div className="max-w-xl px-8 text-center">
         <motion.p
@@ -42,6 +54,24 @@ export default function LoadingSplash({ onComplete }) {
           >
             A little something, just for you ♡
           </motion.p>
+        )}
+
+        {canEnter && (
+          <motion.div
+            className="mt-12"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <motion.p
+              className="text-sm text-[#c8b6ff]"
+              animate={{ opacity: [0.5, 1, 0.5] }}
+              transition={{ repeat: Infinity, duration: 2 }}
+            >
+              Tap anywhere to enter ♡
+            </motion.p>
+            <p className="mt-2 text-xs text-gray-500">with &ldquo;Tum&rdquo; playing for you</p>
+          </motion.div>
         )}
       </div>
     </motion.div>

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
+import { MusicProvider } from './context/MusicContext'
 import LoadingSplash from './components/LoadingSplash'
 import CustomCursor from './components/CustomCursor'
 import ParticleBackground from './components/ParticleBackground'
@@ -15,7 +16,7 @@ import ConfessionModal from './components/ConfessionModal'
 import ConfettiCelebration from './components/ConfettiCelebration'
 import MusicToggle from './components/MusicToggle'
 
-export default function App() {
+function AppContent() {
   const [loading, setLoading] = useState(true)
   const [modalOpen, setModalOpen] = useState(false)
   const [showConfetti, setShowConfetti] = useState(false)
@@ -30,7 +31,7 @@ export default function App() {
 
   return (
     <>
-      <MusicToggle autoPlay />
+      <MusicToggle />
       <AnimatePresence mode="wait">
         {loading && <LoadingSplash key="splash" onComplete={() => setLoading(false)} />}
       </AnimatePresence>
@@ -66,5 +67,13 @@ export default function App() {
         </>
       )}
     </>
+  )
+}
+
+export default function App() {
+  return (
+    <MusicProvider>
+      <AppContent />
+    </MusicProvider>
   )
 }
