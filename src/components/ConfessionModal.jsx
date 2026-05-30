@@ -85,10 +85,10 @@ export default function ConfessionModal({ isOpen, onClose, onSuccess }) {
                     <Heart size={32} fill="currentColor" />
                   </motion.div>
                   <h3 className="font-serif text-2xl text-white">
-                    Kashish, you just made my heart race 💜
+                    Kashish… you just made my whole world stop 💜
                   </h3>
-                  <p className="mt-2 text-sm text-gray-400">
-                    If you&apos;d actually like this to go somewhere… leave me a little note?
+                  <p className="mt-2 text-sm text-gray-400 italic">
+                    If your heart said yes too — leave me a little piece of yours?
                   </p>
                 </div>
 
@@ -194,10 +194,10 @@ export default function ConfessionModal({ isOpen, onClose, onSuccess }) {
                   <Heart className="mx-auto mb-6 text-[#7c4dff]" size={48} fill="currentColor" />
                 </motion.div>
                 <h3 className="font-serif text-2xl text-white">
-                  Kashish… this just became my favorite moment ever.
+                  Kashish… this is officially my favorite moment in the universe.
                 </h3>
-                <p className="mt-4 text-gray-400">
-                  I promise to make this the start of something beautiful.
+                <p className="mt-4 text-gray-400 italic">
+                  I promise to turn this yes into the most beautiful love story.
                 </p>
                 <motion.button
                   className="interactive mt-8 rounded-full border border-white/20 px-8 py-3 text-sm text-white hover:bg-white/10"

@@ -7,7 +7,7 @@ import RunawayButton from './RunawayButton'
 function FloatingHeart({ style, duration, delay }) {
   return (
     <motion.div
-      className="pointer-events-none absolute text-[#c8b6ff]/20"
+      className="pointer-events-none absolute text-[#c8b6ff]/25"
       style={style}
       animate={{
         y: [0, -1000],
@@ -25,7 +25,7 @@ export default function ProposalSection({ onOpenModal, onReplay }) {
   const [heartHeld, setHeartHeld] = useState(false)
   const hearts = useMemo(
     () =>
-      Array.from({ length: 15 }, (_, i) => ({
+      Array.from({ length: 20 }, (_, i) => ({
         id: i,
         style: { left: `${Math.random() * 100}%`, bottom: '-10%' },
         duration: Math.random() * 10 + 10,
@@ -42,7 +42,7 @@ export default function ProposalSection({ onOpenModal, onReplay }) {
         ))}
       </div>
 
-      <div className="pointer-events-none absolute top-1/2 left-1/2 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#7c4dff]/10 blur-[120px]" />
+      <div className="pointer-events-none absolute top-1/2 left-1/2 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#7c4dff]/15 blur-[120px]" />
 
       <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
         <motion.p
@@ -52,7 +52,7 @@ export default function ProposalSection({ onOpenModal, onReplay }) {
           viewport={{ once: true }}
           transition={{ duration: 1.5 }}
         >
-          So after all these feelings…
+          After all these words, all this love…
         </motion.p>
 
         <motion.p
@@ -62,7 +62,7 @@ export default function ProposalSection({ onOpenModal, onReplay }) {
           viewport={{ once: true }}
           transition={{ duration: 1.5, delay: 1.5 }}
         >
-          Kashish, there&apos;s something I wanted to ask you.
+          Kashish, there&apos;s one question my heart keeps whispering.
         </motion.p>
 
         <motion.div
@@ -71,11 +71,21 @@ export default function ProposalSection({ onOpenModal, onReplay }) {
           viewport={{ once: true }}
           transition={{ duration: 1.5, delay: 3 }}
         >
-          <h2 className="mt-10 font-serif text-4xl leading-tight font-light md:text-7xl">
-            <span className="gradient-text italic">
-              Can I be more than just someone who admires you?
+          <h2 className="mt-10 font-serif text-4xl leading-tight font-light romantic-glow md:text-7xl">
+            <span className="gradient-text-shimmer italic">
+              Will you let me love you — not quietly, but completely?
             </span>
           </h2>
+
+          <motion.p
+            className="mt-6 text-sm text-gray-500 italic"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 4 }}
+          >
+            Hold the heart below… if you feel even a little of what I feel.
+          </motion.p>
 
           <div className="mt-12">
             <HoldHeartButton onComplete={() => setHeartHeld(true)} />
@@ -89,11 +99,11 @@ export default function ProposalSection({ onOpenModal, onReplay }) {
           >
             {heartHeld && (
               <motion.p
-                className="text-sm text-[#c8b6ff] italic"
+                className="font-serif text-[#c8b6ff] italic"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
               >
-                I felt that. Now let me ask you properly…
+                I felt that, Kashish. Now tell me what your heart says…
               </motion.p>
             )}
 
@@ -109,7 +119,7 @@ export default function ProposalSection({ onOpenModal, onReplay }) {
                 onClick={heartHeld ? onOpenModal : undefined}
                 disabled={!heartHeld}
               >
-                Yes, I&apos;d love that ♡
+                Yes — I feel it too ♡
               </motion.button>
 
               {heartHeld && <RunawayButton />}
@@ -120,7 +130,7 @@ export default function ProposalSection({ onOpenModal, onReplay }) {
               whileHover={{ scale: 1.02 }}
               onClick={onReplay}
             >
-              Replay Everything ▶
+              Fall in love with this again ▶
             </motion.button>
           </motion.div>
         </motion.div>

@@ -3,35 +3,35 @@ import { Sparkles, Star, Camera, Heart } from 'lucide-react'
 
 const traits = [
   {
-    text: 'You make simplicity look beautiful, Kashish.',
+    text: 'You make ordinary moments feel like poetry, Kashish.',
     icon: Sparkles,
     bg: '/13.png',
     className: 'md:col-span-2 md:row-span-2',
     size: 'text-3xl md:text-4xl',
   },
   {
-    text: 'Your smile feels oddly comforting.',
+    text: 'Your smile? It heals things I never said out loud.',
     icon: Heart,
     bg: '/3.png',
     className: 'md:col-span-1 md:row-span-1',
     size: 'text-2xl',
   },
   {
-    text: 'You have the kind of energy people remember.',
+    text: 'You carry a light that people feel — not just see.',
     icon: Star,
     bg: '/14.png',
     className: 'md:col-span-1 md:row-span-2',
     size: 'text-2xl',
   },
   {
-    text: 'Even your random moments feel cinematic.',
+    text: 'Even your silence feels like a beautiful scene.',
     icon: Camera,
     bg: '/6.png',
     className: 'md:col-span-1 md:row-span-1',
     size: 'text-2xl',
   },
   {
-    text: 'You somehow make every place look prettier.',
+    text: 'You walk into places and somehow make them sacred.',
     icon: Sparkles,
     bg: '/9.png',
     className: 'md:col-span-1 md:row-span-1',
@@ -98,16 +98,16 @@ export default function TraitsSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          What Makes <span className="gradient-text italic">Kashish</span> Different
+          Reasons my heart chose <span className="gradient-text-shimmer italic">Kashish</span>
         </motion.h2>
         <motion.p
-          className="mb-16 text-center text-sm text-gray-500"
+          className="mb-16 text-center text-sm text-gray-500 italic"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
         >
-          (I could write a whole book, but here are just five reasons)
+          I could write you a thousand lines… but these five already say everything.
         </motion.p>
 
         <div className="grid auto-rows-[220px] grid-cols-1 gap-6 md:grid-cols-3">

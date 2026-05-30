@@ -3,14 +3,14 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Heart, X } from 'lucide-react'
 
 const galleryItems = [
-  { src: '/1.png', caption: 'This is the photo I keep coming back to.' },
-  { src: '/3.png', caption: 'Probably my favorite picture of you, Kashish.' },
-  { src: '/5.png', caption: 'You looked unreal here. Like a dream.' },
-  { src: '/6.png', caption: 'Straight out of a movie — and you\'re the star.' },
-  { src: '/9.png', caption: "I still don't know why this one hits different." },
-  { src: '/10.png', caption: 'You, lost in your own world. I wanted to be in it.' },
-  { src: '/11.png', caption: 'The kind of moment I wish I was there for.' },
-  { src: '/12.png', caption: 'Just you, being effortlessly you. That\'s enough.' },
+  { src: '/1.png', caption: 'One look at you — and my whole day changed direction.' },
+  { src: '/3.png', caption: 'If I had to pick one face to see forever… it would be this one, Kashish.' },
+  { src: '/5.png', caption: 'You looked like a dream I didn\'t want to wake up from.' },
+  { src: '/6.png', caption: 'Main character energy. That\'s you. Always you.' },
+  { src: '/9.png', caption: 'I don\'t know why this photo hurts so beautifully — maybe because I miss being there.' },
+  { src: '/10.png', caption: 'Lost in your own world… and I just wanted a place in it.' },
+  { src: '/11.png', caption: 'A moment I wasn\'t part of — but my heart still remembers.' },
+  { src: '/12.png', caption: 'Effortlessly you. That\'s the most dangerous kind of beautiful.' },
 ]
 
 function GalleryItem({ item, index, onClick }) {
@@ -23,19 +23,19 @@ function GalleryItem({ item, index, onClick }) {
       transition={{ duration: 0.6, delay: index * 0.1 }}
       onClick={() => onClick(item)}
     >
-      <div className="relative overflow-hidden rounded-2xl">
+      <div className="relative overflow-hidden rounded-2xl ring-1 ring-white/5 transition-all duration-500 group-hover:ring-[#c8b6ff]/40">
         <img
           src={item.src}
           alt={item.caption}
           className="w-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:rotate-1"
         />
-        <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-t from-[#0b0b0f]/90 via-[#0b0b0f]/40 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+        <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-t from-[#0b0b0f]/95 via-[#0b0b0f]/50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100">
           <Heart
             className="mb-3 text-[#c8b6ff] opacity-0 transition-all delay-100 duration-500 group-hover:scale-110 group-hover:opacity-100"
             size={32}
             fill="currentColor"
           />
-          <p className="translate-y-4 px-4 text-center text-sm text-white/90 opacity-0 transition-all delay-200 duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+          <p className="translate-y-4 px-4 text-center font-serif text-sm text-white/90 italic opacity-0 transition-all delay-200 duration-500 group-hover:translate-y-0 group-hover:opacity-100">
             {item.caption}
           </p>
         </div>
@@ -71,8 +71,8 @@ function Lightbox({ item, onClose }) {
         exit={{ scale: 0.9, y: 20 }}
         onClick={(e) => e.stopPropagation()}
       >
-        <img src={item.src} alt={item.caption} className="max-h-[80vh] rounded-2xl object-contain" />
-        <p className="mt-4 text-center font-serif text-lg text-white/80 italic">{item.caption}</p>
+        <img src={item.src} alt={item.caption} className="max-h-[80vh] rounded-2xl object-contain shadow-[0_0_60px_rgba(124,77,255,0.3)]" />
+        <p className="mt-4 text-center font-serif text-lg text-[#c8b6ff] italic">{item.caption}</p>
       </motion.div>
     </motion.div>
   )
@@ -91,7 +91,7 @@ export default function GallerySection() {
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          Moments I Kept Thinking About
+          Every photo of you, a heartbeat I replay
         </motion.h2>
         <motion.p
           className="mb-16 text-center text-sm text-gray-500 italic"
@@ -100,7 +100,7 @@ export default function GallerySection() {
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
         >
-          Every photo of you feels like a memory I wasn&apos;t there for — but wish I was.
+          I wasn&apos;t there for these moments — but my heart acts like I was.
         </motion.p>
 
         <div className="columns-1 gap-6 space-y-6 sm:columns-2 lg:columns-3">

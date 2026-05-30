@@ -35,8 +35,32 @@
     -webkit-text-fill-color: transparent;
   }
 
+  .gradient-text-shimmer {
+    background: linear-gradient(
+      90deg,
+      #c8b6ff 0%,
+      #f6c177 25%,
+      #ffffff 50%,
+      #f6c177 75%,
+      #c8b6ff 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 4s linear infinite;
+  }
+
   .glow-shadow {
     box-shadow: 0 0 40px #7c4dff4d;
+  }
+
+  .heartbeat-glow {
+    animation: heartbeat 2.5s ease-in-out infinite;
+  }
+
+  .romantic-glow {
+    text-shadow: 0 0 30px rgba(124, 77, 255, 0.4), 0 0 60px rgba(198, 182, 255, 0.2);
   }
 
   .scrollbar-hide::-webkit-scrollbar {
@@ -47,4 +71,25 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+}
+
+@keyframes shimmer {
+  0% { background-position: 0% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes heartbeat {
+  0%, 100% { box-shadow: 0 0 20px rgba(124, 77, 255, 0.3), 0 0 40px rgba(246, 193, 119, 0.1); }
+  50% { box-shadow: 0 0 40px rgba(124, 77, 255, 0.6), 0 0 80px rgba(246, 193, 119, 0.3); }
+}
+
+@keyframes float-up {
+  0% { opacity: 0; transform: translateY(20px); }
+  15% { opacity: 0.15; }
+  85% { opacity: 0.15; }
+  100% { opacity: 0; transform: translateY(-120px); }
+}
+
+.animate-float-word {
+  animation: float-up 8s ease-in-out infinite;
 }

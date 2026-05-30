@@ -4,9 +4,11 @@ import { MusicProvider } from './context/MusicContext'
 import LoadingSplash from './components/LoadingSplash'
 import CustomCursor from './components/CustomCursor'
 import ParticleBackground from './components/ParticleBackground'
+import FloatingRomance from './components/FloatingRomance'
 import ScrollProgressBar from './components/ScrollProgressBar'
 import HeroSection from './components/HeroSection'
 import TimelineSection from './components/TimelineSection'
+import RomanticDivider from './components/RomanticDivider'
 import TraitsSection from './components/TraitsSection'
 import BeforeAfterSection from './components/BeforeAfterSection'
 import GallerySection from './components/GallerySection'
@@ -40,6 +42,7 @@ function AppContent() {
         <>
           <CustomCursor />
           <ParticleBackground />
+          <FloatingRomance />
           <ScrollProgressBar />
           <ConfettiCelebration
             active={showConfetti}
@@ -48,9 +51,19 @@ function AppContent() {
 
           <main className="selection:bg-[#7c4dff] selection:text-white">
             <HeroSection />
+            <RomanticDivider
+              quote="You are the kind of beautiful that makes people forget how to look away."
+              author="every beat of my heart"
+            />
             <TimelineSection />
+            <RomanticDivider
+              quote="In a world full of temporary things, you feel like forever."
+            />
             <TraitsSection />
             <BeforeAfterSection />
+            <RomanticDivider
+              quote="I didn't believe in soulmates — until your smile made me a believer."
+            />
             <GallerySection />
             <LetterSection />
             <ProposalSection

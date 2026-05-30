@@ -8,13 +8,13 @@ export default function LoadingSplash({ onComplete }) {
   const { unmute } = useMusic()
 
   const lines = [
-    'Some people accidentally become someone\'s favorite person.',
-    'For me, that person is Kashish.',
+    'Some souls don\'t meet by accident — they meet because the universe insisted.',
+    'And mine insisted on you, Kashish.',
   ]
 
   useEffect(() => {
-    const t1 = setTimeout(() => setPhase(1), 2500)
-    const t2 = setTimeout(() => setCanEnter(true), 4000)
+    const t1 = setTimeout(() => setPhase(1), 2800)
+    const t2 = setTimeout(() => setCanEnter(true), 4500)
     return () => {
       clearTimeout(t1)
       clearTimeout(t2)
@@ -35,12 +35,15 @@ export default function LoadingSplash({ onComplete }) {
       onClick={handleEnter}
       onTouchStart={handleEnter}
     >
-      <div className="max-w-xl px-8 text-center">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,_#7c4dff15_0%,_transparent_70%)]" />
+
+      <div className="relative max-w-2xl px-8 text-center">
         <motion.p
           className="font-serif text-2xl leading-relaxed text-white/90 italic md:text-3xl"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2, ease: 'easeOut' }}
+          key={phase}
         >
           &ldquo;{lines[phase]}&rdquo;
         </motion.p>
@@ -52,7 +55,7 @@ export default function LoadingSplash({ onComplete }) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
           >
-            A little something, just for you ♡
+            I made this with every feeling I couldn&apos;t say out loud
           </motion.p>
         )}
 
@@ -64,13 +67,13 @@ export default function LoadingSplash({ onComplete }) {
             transition={{ duration: 0.8 }}
           >
             <motion.p
-              className="text-sm text-[#c8b6ff]"
-              animate={{ opacity: [0.5, 1, 0.5] }}
+              className="gradient-text-shimmer font-serif text-lg italic"
+              animate={{ opacity: [0.7, 1, 0.7] }}
               transition={{ repeat: Infinity, duration: 2 }}
             >
-              Tap anywhere to enter ♡
+              Tap anywhere, Kashish ♡
             </motion.p>
-            <p className="mt-2 text-xs text-gray-500">with &ldquo;Tum&rdquo; playing for you</p>
+            <p className="mt-2 text-xs text-gray-500">with &ldquo;Tum&rdquo; — because some feelings need a song</p>
           </motion.div>
         )}
       </div>

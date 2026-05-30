@@ -34,7 +34,7 @@ export default function HoldHeartButton({ onComplete }) {
   return (
     <div className="flex flex-col items-center gap-4">
       <motion.button
-        className="interactive relative flex h-24 w-24 items-center justify-center rounded-full border-2 border-[#c8b6ff]/40 bg-[#7c4dff]/10"
+        className="interactive heartbeat-glow relative flex h-24 w-24 items-center justify-center rounded-full border-2 border-[#c8b6ff]/50 bg-[#7c4dff]/15"
         whileTap={{ scale: 0.95 }}
         onMouseDown={startHold}
         onMouseUp={stopHold}
@@ -57,8 +57,8 @@ export default function HoldHeartButton({ onComplete }) {
           />
         </svg>
         <motion.div
-          animate={holding ? { scale: [1, 1.2, 1] } : { scale: 1 }}
-          transition={holding ? { repeat: Infinity, duration: 0.6 } : {}}
+          animate={holding ? { scale: [1, 1.25, 1] } : { scale: 1 }}
+          transition={holding ? { repeat: Infinity, duration: 0.5 } : {}}
         >
           <Heart
             size={32}
@@ -68,12 +68,12 @@ export default function HoldHeartButton({ onComplete }) {
         </motion.div>
       </motion.button>
 
-      <p className="text-sm text-gray-400">
+      <p className="font-serif text-sm text-gray-400 italic">
         {done
-          ? 'Your heart spoke louder than words 💜'
+          ? 'Your heart just answered mine 💜'
           : holding
-            ? 'Keep holding…'
-            : 'Hold the heart if you feel the same'}
+            ? 'Don\'t let go…'
+            : 'Press & hold if you feel something too'}
       </p>
     </div>
   )

@@ -2,12 +2,12 @@ import { useState, useRef } from 'react'
 import { motion } from 'framer-motion'
 
 const MESSAGES = [
-  'Are you sure? 🥺',
-  'Think again…',
-  'My heart is fragile 💔',
-  'Please? 🙏',
-  'Just kidding, you can\'t escape 😄',
-  'Okay fine, take your time ♡',
+  'Are you sure, Kashish? 🥺',
+  'My heart can\'t take this…',
+  'Think about my feelings 💔',
+  'Please don\'t do this to me 🙏',
+  'You know you want to say yes 😄',
+  'Fine… but my heart is still waiting ♡',
 ]
 
 export default function RunawayButton() {
@@ -37,11 +37,11 @@ export default function RunawayButton() {
         onMouseEnter={runAway}
         onTouchStart={runAway}
       >
-        Not yet… 😅
+        I need more time… 😅
       </motion.button>
       {hoverCount > 0 && (
         <motion.p
-          className="text-xs text-gray-500 italic"
+          className="text-xs text-[#c8b6ff]/70 italic"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           key={msgIndex}
