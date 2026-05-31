@@ -1,6 +1,8 @@
 import { createContext, useContext, useRef, useState, useEffect, useCallback } from 'react'
 
 const MusicContext = createContext(null)
+const SONG_SRC = '/tum.mp3'
+const START_AT = 1
 
 export function MusicProvider({ children }) {
   const audioRef = useRef(null)
@@ -8,10 +10,19 @@ export function MusicProvider({ children }) {
   const [ready, setReady] = useState(false)
   const unmutedRef = useRef(false)
 
+  const seekToStart = useCallback(() => {
+    const audio = audioRef.current
+    if (!audio || audio.duration <= START_AT) return
+    if (audio.currentTime < START_AT) {
+      audio.currentTime = START_AT
+    }
+  }, [])
+
   const startMusic = useCallback(async (withSound = true) => {
     const audio = audioRef.current
     if (!audio) return false
 
+    seekToStart()
     audio.volume = 0.6
 
     if (withSound) {
@@ -27,7 +38,7 @@ export function MusicProvider({ children }) {
     } catch {
       return false
     }
-  }, [])
+  }, [seekToStart])
 
   const unmute = useCallback(async () => {
     const audio = audioRef.current
@@ -36,6 +47,7 @@ export function MusicProvider({ children }) {
     audio.muted = false
     unmutedRef.current = true
     audio.volume = 0.6
+    seekToStart()
 
     if (audio.paused) {
       try {
@@ -45,7 +57,7 @@ export function MusicProvider({ children }) {
       }
     }
     return true
-  }, [startMusic])
+  }, [startMusic, seekToStart])
 
   const toggle = useCallback(async () => {
     const audio = audioRef.current
@@ -64,11 +76,21 @@ export function MusicProvider({ children }) {
 
     const onPlay = () => setPlaying(true)
     const onPause = () => setPlaying(false)
-    const onCanPlay = () => setReady(true)
+    const onCanPlay = () => {
+      setReady(true)
+      seekToStart()
+    }
+    const onTimeUpdate = () => {
+      if (audio.currentTime > 0 && audio.currentTime < START_AT) {
+        audio.currentTime = START_AT
+      }
+    }
 
     audio.addEventListener('play', onPlay)
     audio.addEventListener('pause', onPause)
     audio.addEventListener('canplaythrough', onCanPlay)
+    audio.addEventListener('loadedmetadata', seekToStart)
+    audio.addEventListener('timeupdate', onTimeUpdate)
 
     startMusic(false)
 
@@ -82,16 +104,18 @@ export function MusicProvider({ children }) {
       audio.removeEventListener('play', onPlay)
       audio.removeEventListener('pause', onPause)
       audio.removeEventListener('canplaythrough', onCanPlay)
+      audio.removeEventListener('loadedmetadata', seekToStart)
+      audio.removeEventListener('timeupdate', onTimeUpdate)
       document.removeEventListener('click', unlock)
       document.removeEventListener('touchstart', unlock)
     }
-  }, [startMusic, unmute])
+  }, [startMusic, unmute, seekToStart])
 
   return (
     <MusicContext.Provider value={{ playing, ready, startMusic, unmute, toggle, audioRef }}>
       <audio
         ref={audioRef}
-        src="/tum.mp3"
+        src={SONG_SRC}
         loop
         preload="auto"
         playsInline
