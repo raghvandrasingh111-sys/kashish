@@ -47,7 +47,7 @@ function TraitCard({ trait, index }) {
       className={`group relative overflow-hidden rounded-3xl ${trait.className}`}
       initial={{ opacity: 0, scale: 0.6, y: 20 }}
       whileInView={{ opacity: 1, scale: 1, y: 0 }}
-      viewport={{ once: true, margin: '-40px' }}
+      viewport={{ once: true, margin: '0px', amount: 0.2 }}
       transition={{
         delay: 0.1 + index * 0.1,
         duration: 0.8,
@@ -60,7 +60,7 @@ function TraitCard({ trait, index }) {
         <img
           src={trait.bg}
           alt=""
-          className="absolute inset-0 h-full w-full object-cover opacity-50 transition-all duration-700 group-hover:scale-110 group-hover:opacity-70"
+          className="absolute inset-0 h-full w-full object-cover opacity-60 sm:opacity-50 transition-all duration-700 group-hover:scale-110 group-hover:opacity-70"
         />
       )}
       <div className="absolute inset-0 bg-gradient-to-t from-[#0b0b0f]/90 via-[#0b0b0f]/50 to-transparent" />

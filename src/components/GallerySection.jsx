@@ -19,7 +19,7 @@ function GalleryItem({ item, index, onClick }) {
       className="group interactive mb-6 break-inside-avoid cursor-pointer overflow-hidden rounded-2xl"
       initial={{ opacity: 0, scale: 0.95 }}
       whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true, margin: '-50px' }}
+      viewport={{ once: true, margin: '0px', amount: 0.2 }}
       transition={{ duration: 0.6, delay: index * 0.1 }}
       onClick={() => onClick(item)}
     >

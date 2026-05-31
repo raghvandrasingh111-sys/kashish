@@ -3,11 +3,11 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 
 const floatPhotos = [
-  { src: '/7.png', className: 'top-[10%] left-[5%] md:left-[10%] -rotate-6 hidden sm:block opacity-40', parallax: -150 },
-  { src: '/8.png', className: 'top-[30%] right-[5%] md:right-[7%] rotate-3 hidden sm:block opacity-60', parallax: 150 },
-  { src: '/4.png', className: 'bottom-[10%] left-[20%] rotate-12 hidden lg:block opacity-40', parallax: -150 },
-  { src: '/5.png', className: 'top-[15%] right-[25%] md:right-[30%] rotate-6 hidden lg:block opacity-40', parallax: 150 },
-  { src: '/9.png', className: 'bottom-[5%] right-[15%] md:right-[20%] -rotate-12 hidden sm:block opacity-60', parallax: -150 },
+  { src: '/7.png', className: 'top-[6%] left-[1%] sm:left-[5%] md:left-[10%] -rotate-6 opacity-60 sm:opacity-40', parallax: -150 },
+  { src: '/8.png', className: 'top-[12%] right-[1%] sm:top-[30%] sm:right-[5%] md:right-[7%] rotate-3 opacity-70 sm:opacity-60', parallax: 150 },
+  { src: '/4.png', className: 'bottom-[18%] left-[2%] sm:bottom-[10%] sm:left-[20%] rotate-12 opacity-55 sm:opacity-40', parallax: -150 },
+  { src: '/5.png', className: 'bottom-[22%] right-[2%] sm:top-[15%] sm:bottom-auto sm:right-[25%] md:right-[30%] rotate-6 opacity-55 sm:opacity-40', parallax: 150 },
+  { src: '/9.png', className: 'bottom-[3%] right-[6%] sm:bottom-[5%] sm:right-[15%] md:right-[20%] -rotate-12 opacity-70 sm:opacity-60', parallax: -150 },
 ]
 
 const WHISPERS = [
@@ -21,7 +21,7 @@ function FloatPhoto({ src, className, parallax, scrollY }) {
   const y = useTransform(scrollY, [0, 1000], [0, parallax])
 
   return (
-    <motion.div className={`absolute w-28 md:w-40 ${className}`} style={{ y }}>
+    <motion.div className={`absolute w-[4.5rem] sm:w-28 md:w-40 ${className}`} style={{ y }}>
       <div className="glass-card interactive cursor-pointer rounded-2xl p-2 transition-opacity duration-500 hover:opacity-100">
         <img src={src} alt="" className="h-auto w-full rounded-xl object-cover" />
       </div>
@@ -47,7 +47,7 @@ export default function HeroSection() {
 
   return (
     <section id="hero" className="relative flex min-h-screen items-center justify-center overflow-hidden pt-20">
-      <div className="pointer-events-none absolute inset-0">
+      <div className="pointer-events-none absolute inset-0 z-[1]">
         {floatPhotos.map((photo, i) => (
           <FloatPhoto key={i} {...photo} scrollY={scrollY} />
         ))}
